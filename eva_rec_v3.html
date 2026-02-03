@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>eva_rec_v3.md</title>
+  <meta
+    http-equiv="Content-type"
+    content="text/html;charset=UTF-8"
+  >
+
+  <style>
+    /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+    /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+    body {
+      font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+      font-size: var(--vscode-markdown-font-size, 14px);
+      padding: 0 26px;
+      line-height: var(--vscode-markdown-line-height, 22px);
+      word-wrap: break-word;
+    }
+
+    #code-csp-warning {
+      position: fixed;
+      top: 0;
+      right: 0;
+      color: white;
+      margin: 16px;
+      text-align: center;
+      font-size: 12px;
+      font-family: sans-serif;
+      background-color: #444444;
+      cursor: pointer;
+      padding: 6px;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+    }
+
+    #code-csp-warning:hover {
+      text-decoration: none;
+      background-color: #007acc;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+    }
+
+    body.scrollBeyondLastLine {
+      margin-bottom: calc(100vh - 22px);
+    }
+
+    body.showEditorSelection .code-line {
+      position: relative;
+    }
+
+    body.showEditorSelection .code-active-line:before,
+    body.showEditorSelection .code-line:hover:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -12px;
+      height: 100%;
+    }
+
+    body.showEditorSelection li.code-active-line:before,
+    body.showEditorSelection li.code-line:hover:before {
+      left: -30px;
+    }
+
+    .vscode-light.showEditorSelection .code-active-line:before {
+      border-left: 3px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .vscode-light.showEditorSelection .code-line:hover:before {
+      border-left: 3px solid rgba(0, 0, 0, 0.40);
+    }
+
+    .vscode-light.showEditorSelection .code-line .code-line:hover:before {
+      border-left: none;
+    }
+
+    .vscode-dark.showEditorSelection .code-active-line:before {
+      border-left: 3px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .vscode-dark.showEditorSelection .code-line:hover:before {
+      border-left: 3px solid rgba(255, 255, 255, 0.60);
+    }
+
+    .vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+      border-left: none;
+    }
+
+    .vscode-high-contrast.showEditorSelection .code-active-line:before {
+      border-left: 3px solid rgba(255, 160, 0, 0.7);
+    }
+
+    .vscode-high-contrast.showEditorSelection .code-line:hover:before {
+      border-left: 3px solid rgba(255, 160, 0, 1);
+    }
+
+    .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+      border-left: none;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 1px solid -webkit-focus-ring-color;
+      outline-offset: -1px;
+    }
+
+    hr {
+      border: 0;
+      height: 2px;
+      border-bottom: 2px solid;
+    }
+
+    h1 {
+      padding-bottom: 0.3em;
+      line-height: 1.2;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: normal;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    table>thead>tr>th {
+      text-align: left;
+      border-bottom: 1px solid;
+    }
+
+    table>thead>tr>th,
+    table>thead>tr>td,
+    table>tbody>tr>th,
+    table>tbody>tr>td {
+      padding: 5px 10px;
+    }
+
+    table>tbody>tr+tr>td {
+      border-top: 1px solid;
+    }
+
+    blockquote {
+      margin: 0 7px 0 5px;
+      padding: 0 16px 0 10px;
+      border-left-width: 5px;
+      border-left-style: solid;
+    }
+
+    code {
+      font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+      font-size: 1em;
+      line-height: 1.357em;
+    }
+
+    body.wordWrap pre {
+      white-space: pre-wrap;
+    }
+
+    pre:not(.hljs),
+    pre.hljs code>div {
+      padding: 16px;
+      border-radius: 3px;
+      overflow: auto;
+    }
+
+    pre code {
+      color: var(--vscode-editor-foreground);
+      tab-size: 4;
+    }
+
+    /** Theming */
+
+    .vscode-light pre {
+      background-color: rgba(220, 220, 220, 0.4);
+    }
+
+    .vscode-dark pre {
+      background-color: rgba(10, 10, 10, 0.4);
+    }
+
+    .vscode-high-contrast pre {
+      background-color: rgb(0, 0, 0);
+    }
+
+    .vscode-high-contrast h1 {
+      border-color: rgb(0, 0, 0);
+    }
+
+    .vscode-light table>thead>tr>th {
+      border-color: rgba(0, 0, 0, 0.69);
+    }
+
+    .vscode-dark table>thead>tr>th {
+      border-color: rgba(255, 255, 255, 0.69);
+    }
+
+    .vscode-light h1,
+    .vscode-light hr,
+    .vscode-light table>tbody>tr+tr>td {
+      border-color: rgba(0, 0, 0, 0.18);
+    }
+
+    .vscode-dark h1,
+    .vscode-dark hr,
+    .vscode-dark table>tbody>tr+tr>td {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+  </style>
+
+  <style>
+    /* Tomorrow Theme */
+    /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+    /* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+    /* Tomorrow Comment */
+    .hljs-comment,
+    .hljs-quote {
+      color: #8e908c;
+    }
+
+    /* Tomorrow Red */
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-tag,
+    .hljs-name,
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-regexp,
+    .hljs-deletion {
+      color: #c82829;
+    }
+
+    /* Tomorrow Orange */
+    .hljs-number,
+    .hljs-built_in,
+    .hljs-builtin-name,
+    .hljs-literal,
+    .hljs-type,
+    .hljs-params,
+    .hljs-meta,
+    .hljs-link {
+      color: #f5871f;
+    }
+
+    /* Tomorrow Yellow */
+    .hljs-attribute {
+      color: #eab700;
+    }
+
+    /* Tomorrow Green */
+    .hljs-string,
+    .hljs-symbol,
+    .hljs-bullet,
+    .hljs-addition {
+      color: #718c00;
+    }
+
+    /* Tomorrow Blue */
+    .hljs-title,
+    .hljs-section {
+      color: #4271ae;
+    }
+
+    /* Tomorrow Purple */
+    .hljs-keyword,
+    .hljs-selector-tag {
+      color: #8959a8;
+    }
+
+    .hljs {
+      display: block;
+      overflow-x: auto;
+      color: #4d4d4c;
+      padding: 0.5em;
+    }
+
+    .hljs-emphasis {
+      font-style: italic;
+    }
+
+    .hljs-strong {
+      font-weight: bold;
+    }
+  </style>
+
+  <style>
+    /*
+ * Markdown PDF CSS
+ */
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+      padding: 0 12px;
+    }
+
+    pre {
+      background-color: #f8f8f8;
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+    }
+
+    pre:not(.hljs) {
+      padding: 23px;
+      line-height: 19px;
+    }
+
+    blockquote {
+      background: rgba(127, 127, 127, 0.1);
+      border-color: rgba(0, 122, 204, 0.5);
+    }
+
+    .emoji {
+      height: 1.4em;
+    }
+
+    code {
+      font-size: 14px;
+      line-height: 19px;
+    }
+
+    /* for inline code */
+    :not(pre):not(.hljs)>code {
+      color: #C9AE75;
+      /* Change the old color so it seems less like an error */
+      font-size: inherit;
+    }
+
+    /* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+    .page {
+      page-break-after: always;
+    }
+  </style>
+
+  <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  </style>
+  <script>
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+  </script>
+</head>
+
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+        ? 'dark'
+        : 'default'
+    });
+  </script>
+  <h1 id="evaluaci%C3%B3n-t%C3%A9cnica-backend-%E2%80%93-gesti%C3%B3n-de-departamentos-y-empleados">EVALUACIÓN TÉCNICA
+    BACKEND – GESTIÓN DE DEPARTAMENTOS Y EMPLEADOS</h1>
+  <p><strong>Asignatura:</strong> Programación y Plataformas Web<br>
+    <strong>Tecnología:</strong> Spring Boot | Java | Gradle (Kotlin DSL) | H2 | application.yml
+  </p>
+  <hr>
+  <h2 id="contexto">CONTEXTO</h2>
+  <p>Sistema de gestión de recursos humanos para una organización empresarial. La base de datos gestiona la estructura
+    organizacional con empresas, departamentos y empleados. Se requiere implementar endpoints REST para consultar y
+    gestionar la información considerando las relaciones entre entidades.</p>
+  <p><strong>Modelo de relaciones:</strong></p>
+  <ul>
+    <li>Una <strong>Company</strong> (Empresa) tiene muchos <strong>Department</strong> (Departamentos) → OneToMany</li>
+    <li>Un <strong>Department</strong> pertenece a una <strong>Company</strong> → ManyToOne</li>
+    <li>Un <strong>Department</strong> tiene muchos <strong>Employee</strong> (Empleados) → OneToMany</li>
+    <li>Un <strong>Employee</strong> pertenece a un <strong>Department</strong> → ManyToOne</li>
+  </ul>
+  <hr>
+  <h2 id="1-configuraci%C3%B3n-de-base-de-datos">1. CONFIGURACIÓN DE BASE DE DATOS</h2>
+  <h3 id="11-dependencias-buildgradlekts">1.1 Dependencias (build.gradle.kts)</h3>
+  <pre class="hljs"><code><div>dependencies {
+    implementation(<span class="hljs-string">"org.springframework.boot:spring-boot-starter-web"</span>)
+    implementation(<span class="hljs-string">"org.springframework.boot:spring-boot-starter-data-jpa"</span>)
+    implementation(<span class="hljs-string">"org.springframework.boot:spring-boot-starter-validation"</span>)
+    
+    runtimeOnly(<span class="hljs-string">"com.h2database:h2"</span>)
+    
+    developmentOnly(<span class="hljs-string">"org.springframework.boot:spring-boot-devtools"</span>)
+    testImplementation(<span class="hljs-string">"org.springframework.boot:spring-boot-starter-test"</span>)
+}
+</div></code></pre>
+  <h3 id="12-configuraci%C3%B3n-applicationyml">1.2 Configuración (application.yml)</h3>
+  <pre class="hljs"><code><div><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">datasource:</span>
+    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:h2:mem:hrdb</span>
+    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">org.h2.Driver</span>
+    <span class="hljs-attr">username:</span> <span class="hljs-string">sa</span>
+    <span class="hljs-attr">password:</span>
+
+  <span class="hljs-attr">jpa:</span>
+    <span class="hljs-attr">database-platform:</span> <span class="hljs-string">org.hibernate.dialect.H2Dialect</span>
+    <span class="hljs-attr">hibernate:</span>
+      <span class="hljs-attr">ddl-auto:</span> <span class="hljs-string">none</span>
+    <span class="hljs-attr">show-sql:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">properties:</span>
+      <span class="hljs-attr">hibernate:</span>
+        <span class="hljs-attr">format_sql:</span> <span class="hljs-literal">true</span>
+
+  <span class="hljs-attr">sql:</span>
+    <span class="hljs-attr">init:</span>
+      <span class="hljs-attr">mode:</span> <span class="hljs-string">always</span>
+      <span class="hljs-attr">schema-locations:</span> <span class="hljs-string">classpath:schema.sql</span>
+      <span class="hljs-attr">data-locations:</span> <span class="hljs-string">classpath:data.sql</span>
+
+<span class="hljs-attr">server:</span>
+  <span class="hljs-attr">port:</span> <span class="hljs-number">8080</span>
+</div></code></pre>
+  <h3 id="13-archivos-sql">1.3 Archivos SQL</h3>
+  <p><strong>Ubicación obligatoria:</strong></p>
+  <ul>
+    <li><code>src/main/resources/schema.sql</code></li>
+    <li><code>src/main/resources/data.sql</code></li>
+  </ul>
+  <p><strong>Tabla: companies</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Campo</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>BIGINT</td>
+        <td>Identificador único (PK)</td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>VARCHAR(100)</td>
+        <td>Nombre de la empresa</td>
+      </tr>
+      <tr>
+        <td>country</td>
+        <td>VARCHAR(50)</td>
+        <td>País de la empresa</td>
+      </tr>
+      <tr>
+        <td>active</td>
+        <td>CHAR(1)</td>
+        <td>Estado: &quot;S&quot; = activo, &quot;N&quot; = inactivo</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Tabla: departments</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Campo</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>BIGINT</td>
+        <td>Identificador único (PK)</td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>VARCHAR(100)</td>
+        <td>Nombre del departamento</td>
+      </tr>
+      <tr>
+        <td>budget</td>
+        <td>DECIMAL</td>
+        <td>Presupuesto anual</td>
+      </tr>
+      <tr>
+        <td>company_id</td>
+        <td>BIGINT</td>
+        <td>FK a companies (ManyToOne)</td>
+      </tr>
+      <tr>
+        <td>active</td>
+        <td>CHAR(1)</td>
+        <td>Estado: &quot;S&quot; = activo, &quot;N&quot; = inactivo</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Tabla: employees</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Campo</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>BIGINT</td>
+        <td>Identificador único (PK)</td>
+      </tr>
+      <tr>
+        <td>first_name</td>
+        <td>VARCHAR(50)</td>
+        <td>Nombre del empleado</td>
+      </tr>
+      <tr>
+        <td>last_name</td>
+        <td>VARCHAR(50)</td>
+        <td>Apellido del empleado</td>
+      </tr>
+      <tr>
+        <td>email</td>
+        <td>VARCHAR(100)</td>
+        <td>Correo electrónico</td>
+      </tr>
+      <tr>
+        <td>salary</td>
+        <td>DECIMAL</td>
+        <td>Salario mensual</td>
+      </tr>
+      <tr>
+        <td>department_id</td>
+        <td>BIGINT</td>
+        <td>FK a departments (ManyToOne)</td>
+      </tr>
+      <tr>
+        <td>active</td>
+        <td>CHAR(1)</td>
+        <td>Estado: &quot;S&quot; = activo, &quot;N&quot; = inactivo</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Relaciones:</strong></p>
+  <pre class="hljs"><code><div><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> departments <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (company_id) <span class="hljs-keyword">REFERENCES</span> companies(<span class="hljs-keyword">id</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> employees <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (department_id) <span class="hljs-keyword">REFERENCES</span> departments(<span class="hljs-keyword">id</span>);
+</div></code></pre>
+  <p><strong>Eliminación lógica:</strong> Campo <code>active</code> (&quot;S&quot; = activo, &quot;N&quot; = eliminado)
+    en todas las tablas</p>
+  <hr>
+  <h2 id="2-endpoints-y-contratos">2. ENDPOINTS Y CONTRATOS</h2>
+  <h3 id="endpoint-1-obtener-departamento-con-sus-empleados-activos-ordeenados-por-salario-bajo-parametro">ENDPOINT 1:
+    Obtener departamento con sus empleados ACTIVOS, ordeenados por salario bajo parametro</h3>
+  <p><strong>Ruta:</strong> <code>GET /api/departments/{id}/employees</code></p>
+  <p><strong>Path Variable:</strong></p>
+  <ul>
+    <li><code>id</code> (Long) - ID del departamento</li>
+  </ul>
+  <p><strong>Request Parameter:</strong></p>
+  <ul>
+    <li><code>sort</code> (String, opcional) - Orden de salario: &quot;asc&quot; (ascendente) o &quot;desc&quot;
+      (descendente). Default: &quot;desc&quot;</li>
+  </ul>
+  <p><strong>DTO Response:</strong> <code>DepartmentWithEmployeesDto</code></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Engineering"</span>,
+  <span class="hljs-attr">"budget"</span>: <span class="hljs-number">250000.00</span>,
+  <span class="hljs-attr">"company"</span>: {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"TechCorp"</span>,
+    <span class="hljs-attr">"country"</span>: <span class="hljs-string">"USA"</span>
+  },
+  <span class="hljs-attr">"employees"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">2</span>,
+      <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"Jane"</span>,
+      <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Smith"</span>,
+      <span class="hljs-attr">"email"</span>: <span class="hljs-string">"jane.smith@techcorp.com"</span>,
+      <span class="hljs-attr">"salary"</span>: <span class="hljs-number">6200.00</span>
+    },
+     {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"John"</span>,
+      <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Doe"</span>,
+      <span class="hljs-attr">"email"</span>: <span class="hljs-string">"john.doe@techcorp.com"</span>,
+      <span class="hljs-attr">"salary"</span>: <span class="hljs-number">5500.00</span>
+    },
+  ],
+  <span class="hljs-attr">"employeeCount"</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">"totalSalaries"</span>: <span class="hljs-number">11700.00</span>
+}
+</div></code></pre>
+  <p><strong>Reglas:</strong></p>
+  <ul>
+    <li>Solo incluir empleados con <code>active = &quot;S&quot;</code></li>
+    <li>El departamento debe tener <code>active = &quot;S&quot;</code></li>
+    <li><code>employeeCount</code>: número de empleados activos</li>
+    <li><code>totalSalaries</code>: suma de salarios de empleados activos</li>
+    <li>Si el departamento está inactivo: <code>404 NOT FOUND</code></li>
+    <li>Si el departamento no existe: <code>404 NOT FOUND</code></li>
+    <li>Si el departamento no tiene empleados: <code>employees: []</code>, <code>employeeCount: 0</code>,
+      <code>totalSalaries: 0.00</code>
+    </li>
+  </ul>
+  <p><strong>Códigos HTTP:</strong></p>
+  <ul>
+    <li><code>200 OK</code> – Departamento existe y está activo</li>
+    <li><code>404 NOT FOUND</code> – Departamento no existe o está inactivo</li>
+  </ul>
+  <p><strong>Mensaje de error:</strong></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Department not found or inactive"</span>
+}
+</div></code></pre>
+  <hr>
+  <h3 id="endpoint-2-obtener-todos-los-departamentos-de-una-empresa">ENDPOINT 2: Obtener todos los departamentos de una
+    empresa</h3>
+  <p><strong>Ruta:</strong> <code>GET /api/companies/{id}/departments</code></p>
+  <p><strong>Path Variable:</strong></p>
+  <ul>
+    <li><code>id</code> (Long) - ID de la empresa</li>
+  </ul>
+  <p><strong>DTO Response:</strong> <code>CompanyDepartmentsDto</code></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"companyId"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"companyName"</span>: <span class="hljs-string">"TechCorp"</span>,
+  <span class="hljs-attr">"country"</span>: <span class="hljs-string">"USA"</span>,
+  <span class="hljs-attr">"departmentCount"</span>: <span class="hljs-number">3</span>,
+  <span class="hljs-attr">"departments"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Engineering"</span>,
+      <span class="hljs-attr">"budget"</span>: <span class="hljs-number">250000.00</span>,
+      <span class="hljs-attr">"employeeCount"</span>: <span class="hljs-number">12</span>
+    },
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">2</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Marketing"</span>,
+      <span class="hljs-attr">"budget"</span>: <span class="hljs-number">150000.00</span>,
+      <span class="hljs-attr">"employeeCount"</span>: <span class="hljs-number">8</span>
+    },
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">3</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Human Resources"</span>,
+      <span class="hljs-attr">"budget"</span>: <span class="hljs-number">100000.00</span>,
+      <span class="hljs-attr">"employeeCount"</span>: <span class="hljs-number">5</span>
+    }
+  ],
+  <span class="hljs-attr">"totalBudget"</span>: <span class="hljs-number">500000.00</span>
+}
+</div></code></pre>
+  <p><strong>Reglas:</strong></p>
+  <ul>
+    <li>Solo departamentos con <code>active = &quot;S&quot;</code></li>
+    <li>La empresa debe tener <code>active = &quot;S&quot;</code></li>
+    <li><code>employeeCount</code> de cada departamento: solo empleados activos</li>
+    <li><code>totalBudget</code>: suma de presupuestos de departamentos activos</li>
+    <li>Si la empresa no tiene departamentos activos: <code>departments: []</code>, <code>departmentCount: 0</code>,
+      <code>totalBudget: 0.00</code>
+    </li>
+  </ul>
+  <p><strong>Códigos HTTP:</strong></p>
+  <ul>
+    <li><code>200 OK</code> – Empresa existe y está activa</li>
+    <li><code>404 NOT FOUND</code> – Empresa no existe o está inactiva</li>
+  </ul>
+  <p><strong>Mensaje de error:</strong></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Company not found or inactive"</span>
+}
+</div></code></pre>
+  <hr>
+  <h3 id="endpoint-3-obtener-empleados-con-salario-alto-de-una-empresa">ENDPOINT 3: Obtener empleados con salario alto
+    de una empresa</h3>
+  <p><strong>Ruta:</strong> <code>GET /api/companies/{id}/high-salary-employees</code></p>
+  <p><strong>Path Variable:</strong></p>
+  <ul>
+    <li><code>id</code> (Long) - ID de la empresa</li>
+  </ul>
+  <p><strong>Query Parameter:</strong></p>
+  <ul>
+    <li><code>minSalary</code> (Double, opcional) - Salario mínimo. Default: 5000.00</li>
+  </ul>
+  <p><strong>DTO Response:</strong> <code>EmployeesResponseDto</code></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"companyName"</span>: <span class="hljs-string">"TechCorp"</span>,
+  <span class="hljs-attr">"minSalary"</span>: <span class="hljs-number">6000.00</span>,
+  <span class="hljs-attr">"count"</span>: <span class="hljs-number">5</span>,
+  <span class="hljs-attr">"employees"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">2</span>,
+      <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"Jane"</span>,
+      <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Smith"</span>,
+      <span class="hljs-attr">"email"</span>: <span class="hljs-string">"jane.smith@techcorp.com"</span>,
+      <span class="hljs-attr">"salary"</span>: <span class="hljs-number">6200.00</span>,
+      <span class="hljs-attr">"department"</span>: {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Engineering"</span>
+      }
+    },
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">5</span>,
+      <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"Robert"</span>,
+      <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Johnson"</span>,
+      <span class="hljs-attr">"email"</span>: <span class="hljs-string">"robert.johnson@techcorp.com"</span>,
+      <span class="hljs-attr">"salary"</span>: <span class="hljs-number">7500.00</span>,
+      <span class="hljs-attr">"department"</span>: {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Engineering"</span>
+      }
+    }
+  ]
+}
+</div></code></pre>
+  <p><strong>Reglas:</strong></p>
+  <ul>
+    <li>Buscar empleados con <code>salary &gt;= minSalary</code> en todos los departamentos de la empresa</li>
+    <li>Solo empleados con <code>active = &quot;S&quot;</code> de departamentos con <code>active = &quot;S&quot;</code>
+    </li>
+    <li>La empresa debe tener <code>active = &quot;S&quot;</code></li>
+    <li>Ordenar por salario descendente</li>
+    <li>Si no hay empleados que cumplan: <code>employees: []</code>, <code>count: 0</code></li>
+  </ul>
+  <p><strong>Códigos HTTP:</strong></p>
+  <ul>
+    <li><code>200 OK</code> – Siempre (incluso si no hay resultados)</li>
+    <li><code>404 NOT FOUND</code> – Empresa no existe o está inactiva</li>
+  </ul>
+  <h3 id="endpoint-4-transferir-empleado-a-otro-departamento">ENDPOINT 4: Transferir empleado a otro departamento</h3>
+  <p><strong>Ruta:</strong> <code>PATCH /api/employees/{employeeId}/transfer</code></p>
+  <p><strong>Path Variable:</strong></p>
+  <ul>
+    <li><code>employeeId</code> (Long)</li>
+  </ul>
+  <p><strong>Request Body:</strong></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"newDepartmentId"</span>: <span class="hljs-number">3</span>
+}
+</div></code></pre>
+  <p><strong>DTO Response:</strong> <code>EmployeeTransferResponseDto</code></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"employeeId"</span>: <span class="hljs-number">5</span>,
+  <span class="hljs-attr">"employeeName"</span>: <span class="hljs-string">"Robert Johnson"</span>,
+  <span class="hljs-attr">"oldDepartment"</span>: {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Engineering"</span>
+  },
+  <span class="hljs-attr">"newDepartment"</span>: {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">3</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Human Resources"</span>
+  },
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Employee transferred successfully"</span>
+}
+</div></code></pre>
+  <p><strong>Reglas:</strong></p>
+  <ul>
+    <li>El empleado debe existir y estar activo</li>
+    <li>El departamento nuevo debe existir y estar activo</li>
+    <li>El departamento nuevo debe ser diferente al actual</li>
+    <li>Si el empleado ya está en ese departamento: <code>409 CONFLICT</code></li>
+  </ul>
+  <p><strong>Códigos HTTP:</strong></p>
+  <ul>
+    <li><code>200 OK</code> – Transferencia exitosa</li>
+    <li><code>404 NOT FOUND</code> – Empleado o departamento no existe/inactivo</li>
+    <li><code>409 CONFLICT</code> – Empleado ya está en ese departamento</li>
+  </ul>
+  <p><strong>Mensajes de error:</strong></p>
+  <p>Empleado no existe:</p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Employee not found or inactive"</span>
+}
+</div></code></pre>
+  <p>Departamento no existe:</p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Target department not found or inactive"</span>
+}
+</div></code></pre>
+  <p>Ya está en ese departamento:</p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Employee is already in the target department"</span>
+}
+</div></code></pre>
+  <hr>
+  <h2 id="3-modelo-de-entidades-ejemplo">3. MODELO DE ENTIDADES (Ejemplo)</h2>
+  <h3 id="company-entity">Company Entity</h3>
+  <pre class="hljs"><code><div><span class="hljs-meta">@Entity</span>
+<span class="hljs-meta">@Table</span>(name = <span class="hljs-string">"companies"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Company</span> </span>{
+    <span class="hljs-comment">// Agregar annotations e imports necesarios</span>
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> String country;
+    <span class="hljs-keyword">private</span> Character active;
+    <span class="hljs-keyword">private</span> List&lt;Department&gt; departments;
+    
+    <span class="hljs-comment">// Getters, setters, constructors</span>
+}
+</div></code></pre>
+  <h3 id="department-entity">Department Entity</h3>
+  <pre class="hljs"><code><div><span class="hljs-meta">@Entity</span>
+<span class="hljs-meta">@Table</span>(name = <span class="hljs-string">"departments"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Department</span> </span>{
+    <span class="hljs-comment">// Agregar annotations e imports necesarios</span>
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> Double budget;
+    <span class="hljs-keyword">private</span> Character active;
+    <span class="hljs-keyword">private</span> Company company
+    <span class="hljs-keyword">private</span> List&lt;Employee&gt; employees;
+    
+    <span class="hljs-comment">// Getters, setters, constructors</span>
+}
+</div></code></pre>
+  <h3 id="employee-entity">Employee Entity</h3>
+  <pre class="hljs"><code><div><span class="hljs-meta">@Entity</span>
+<span class="hljs-meta">@Table</span>(name = <span class="hljs-string">"employees"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> </span>{
+    
+    <span class="hljs-comment">// Agregar annotations e imports necesarios</span>
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String firstName;
+    <span class="hljs-keyword">private</span> String lastName;
+    <span class="hljs-keyword">private</span> String email;
+    <span class="hljs-keyword">private</span> Double salary;
+    <span class="hljs-keyword">private</span> Character active;
+    <span class="hljs-keyword">private</span> Department department;
+    
+    <span class="hljs-comment">// Getters, setters, constructors</span>
+}
+</div></code></pre>
+  <hr>
+  <h2 id="4-estructura-del-proyecto">4. ESTRUCTURA DEL PROYECTO</h2>
+  <p>cada modulo con sus paquetes correspondientes:</p>
+  <ul>
+    <li>Modulo Company
+      <ul>
+        <li>controller</li>
+        <li>service</li>
+        <li>repository</li>
+        <li>dto</li>
+        <li>entity</li>
+        <li>mapper</li>
+      </ul>
+    </li>
+    <li>Modulo Department
+      <ul>
+        <li>.......</li>
+      </ul>
+    </li>
+  </ul>
+  <p>La estructura del proyecto debe seguir buenas prácticas de organización y arquitectura en capas (Controller,
+    Service, Repository, carpetas que consideren necesarias).</p>
+  <p>##5. CRITERIOS DE EVALUACIÓN</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Criterio</th>
+        <th>Puntos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ENDPOINT 1 – GET /api/departments/{id}/employees</td>
+        <td>2.0</td>
+      </tr>
+      <tr>
+        <td>ENDPOINT 2 – GET /api/companies/{id}/departments</td>
+        <td>2.0</td>
+      </tr>
+      <tr>
+        <td>ENDPOINT 3 – GET /api/companies/{id}/high-salary-employees</td>
+        <td>2.0</td>
+      </tr>
+      <tr>
+        <td>ENDPOINT 4 – PATCH /api/employees/{employeeId}/transfer</td>
+        <td>3.0</td>
+      </tr>
+      <tr>
+        <td>Estructura del proyecto y arquitectura</td>
+        <td>1.0</td>
+      </tr>
+      <tr>
+        <td><strong>TOTAL</strong></td>
+        <td><strong>10.0</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Nota:</strong> Cada endpoint debe cumplir EXACTAMENTE con:</p>
+  <ul>
+    <li>Estructura del DTO (nombres y tipos)</li>
+    <li>Relaciones correctamente configuradas (OneToMany, ManyToOne)</li>
+    <li>Reglas de negocio (validaciones, integridad referencial)</li>
+    <li>Códigos HTTP correctos</li>
+    <li>Comportamiento ante todos los casos</li>
+  </ul>
+  <p><strong>Penalización total (0 puntos) si:</strong></p>
+  <ul>
+    <li>Relaciones JPA incorrectas o no implementadas</li>
+    <li>DTOs no mapean correctamente las relaciones</li>
+    <li>Códigos HTTP incorrectos</li>
+    <li>Validaciones no implementadas</li>
+    <li>No se respeta integridad referencial</li>
+  </ul>
+  <hr>
+  <h2 id="5-entrega">5. ENTREGA</h2>
+  <ul>
+    <li><strong>Medio:</strong> Repositorio remoto (GitHub/GitLab)</li>
+    <li><strong>Enlace:</strong> Subir al AVAC dentro del tiempo asignado</li>
+    <li><strong>Tiempo límite:</strong> Hora exacta del commit</li>
+    <li><strong>Commits posteriores:</strong> NO evaluados</li>
+    <li><strong>Repositorio vacío o inaccesible:</strong> Calificación 0</li>
+  </ul>
+  <p><strong>Responsabilidad del estudiante:</strong></p>
+  <ul>
+    <li>Verificar que el repositorio sea accesible</li>
+    <li>Verificar que el código compile y ejecute</li>
+    <li>Verificar que las relaciones JPA funcionen correctamente</li>
+    <li>Verificar que los archivos SQL creen las tablas con las FK correctas</li>
+    <li>No se aceptan reclamos posteriores por problemas de carga</li>
+  </ul>
+
+</body>
+
+</html>
